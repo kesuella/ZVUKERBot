@@ -1,3 +1,6 @@
-__pycache__/
-voice_data.db
 .env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc

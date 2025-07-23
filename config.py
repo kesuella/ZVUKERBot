@@ -1,4 +1,16 @@
-import os
+from dataclasses import dataclass
+from typing import Any
+from pydantic import BaseSettings
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-ADMINS = [int(x) for x in os.getenv("ADMINS", "").split(",") if x]
+@dataclass
+class BotConfig:
+    token: str
+
+class Settings(BaseSettings):
+    bot: BotConfig
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+
+config = Settings()

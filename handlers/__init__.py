@@ -1,11 +1,9 @@
-from .start import router as start_router
-from .upload import router as upload_router
-from .inline import router as inline_router
-from .admin import router as admin_router
+# handlers/__init__.py
+from .tags import register_tags_handlers
+from .audio import register_audio_handlers  # если есть обработчики загрузки аудио
+from .other import register_other_handlers  # другие ваши обработчики
 
-routers = [
-    start_router,
-    upload_router,
-    inline_router,
-    admin_router
-]
+def register_all_handlers(dp: Dispatcher):
+    register_tags_handlers(dp)
+    register_audio_handlers(dp)  # раскомментируйте если используете
+    register_other_handlers(dp)  # раскомментируйте если используете
