@@ -1,16 +1,16 @@
-from dataclasses import dataclass
-from typing import Any
-from pydantic import BaseSettings
+import os
+from dotenv import load_dotenv
 
-@dataclass
-class BotConfig:
-    token: str
+# Загружаем переменные окружения
+load_dotenv()
 
-class Settings(BaseSettings):
-    bot: BotConfig
-    
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+# Основные настройки бота
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+ADMIN_ID = int(os.getenv('ADMIN_ID'))
 
-config = Settings()
+# Настройки 2FA
+SECRET_KEY = os.getenv('SECRET_KEY')  # Секретный ключ для TOTP
+TOTP_URI = None  # URI для QR-кода
+
+# Настройки базы данных (для хранения пользователей)
+DB_FILE = 'users.db'
